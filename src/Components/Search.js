@@ -13,7 +13,6 @@ const Search = ({onSearch}) => {
 	
 	}
 
-	console.log(SearchBox);
 
 	return (
 		<div className='search'>

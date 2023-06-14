@@ -1,0 +1,87 @@
+.info_focus {
+	display: flex;
+	align-items: center;
+	margin-top: 20px;
+	justify-content: space-between;
+	gap: 8.5rem;
+	font-size: 26px;
+}
+
+.info_focus .id {
+	font-size: 16px;
+	font-weight: 500;
+	color: #3A2F66A6;
+	margin-bottom: 5px;
+  }
+  
+.info_focus .name {
+	color: #3A2F66;
+	cursor: pointer;
+ }
+
+
+.warper {
+	display: flex;
+	flex-direction: column;
+	margin-left: 50px;
+} 
+
+
+.pokemon_focus {
+	transition: all ease-in-out 0.2s;
+	margin-bottom: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	margin-top: 50px;
+	background-color: aquamarine;
+	width: 25vw;
+	height: 60vh;
+	border-radius: 20px;
+}
+
+
+
+
+.type1_focus {
+	cursor: pointer;
+	text-align: center;
+	padding: 5px 25px;
+	font-size: 16px;
+	font-weight: 500;
+	border-radius: 6px;
+
+	background-color: green;
+	color:white;
+}
+.type2_focus {
+	cursor: pointer;
+	text-align: center;
+	margin-top: 10px;
+	padding: 5px 25px;
+	font-size: 16px;
+	font-weight: 500;
+	border-radius: 5px;
+
+	color:white;
+	background-color: blueviolet;
+}
+
+
+.container_focus {
+	margin-top: 20px;
+	border: 2px solid #726B8F;
+	padding: 20px;
+	width: 100%;
+	border-radius: 16px;
+	background-color: #D9D9D959;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+	grid-gap: 10px;
+  }
+
+
+  .photo {
+	object-fit: contain;
+  }

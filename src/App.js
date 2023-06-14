@@ -2,6 +2,7 @@ import './App.css';
 import Menu from './Components/Menu';
 import Search from './Components/Search';
 import Pokemon from './Components/Pokemon';
+import Container from './Components/Container';
 import {React,useEffect,useState} from 'react';
 
 function App() {
@@ -64,6 +65,7 @@ const pokedex = filteredList.map((pokemon,index) => {
     image = {pokemon.sprites.other.dream_world.front_default ? pokemon.sprites.other.dream_world.front_default : pokemon.sprites.other.home.front_default } 
     type1={pokemon.types[0].type.name} 
     type2={pokemon.types[1] ? pokemon.types[1].type.name : null}/>
+
   );
 })
 
@@ -72,10 +74,11 @@ const pokedex = filteredList.map((pokemon,index) => {
     <div className="App">
     <Menu/>
     <Search onSearch = {filterResults}/>
-    <div className='container'>
+    <Container>
+
 			{pokedex}
-      
-		</div>
+   
+		</Container>
     </div>
   );
 }

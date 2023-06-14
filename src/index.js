@@ -1,15 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
+import Focus from "./Components/Focus";
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter,Routes, 
+  Route} from "react-router-dom";
+  
+// eslint-disable-next-line no-lone-blocks
+{/* <Routes>
+<Route path="/" element={<App />} />
+<Route path="./Component/Focus" element={<Focus />} />
+</Routes> */} 
+
+
+// Δουλευουν και τα δυο 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <BrowserRouter>
-    <App />
+
+    <Routes> 
+    
+      <Route exact path={'/'} Component={App} />
+      <Route exact path={'/Focus'} Component={Focus} />
+
+    </Routes>
+
+
   </BrowserRouter>
 );
 

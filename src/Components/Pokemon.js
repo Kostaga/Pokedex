@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Link} from "react-router-dom";
 
 const Pokemon = ({id,name,image,type1,type2,color}) => {
 
@@ -74,7 +74,9 @@ const Pokemon = ({id,name,image,type1,type2,color}) => {
 	return (
 		<div className='card'>
 			<div style={styles} className='pokemon'>
+		<Link to={"/Focus"}>
 				<img alt='pokemon' src={image} width = '200px' height = '200px' />
+				</Link>
 			</div>
 
 			<div className='info'>

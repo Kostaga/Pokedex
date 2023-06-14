@@ -144,3 +144,19 @@ body {
   font-weight: 500;
   border-radius: 5px;
 }
+
+.goBack {
+  padding: 15px 55px;
+  font-size: 24px;
+  font-weight: 700;
+  border-radius: 6px;
+  background-color: #726B8F;
+  color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.343);
+  transition: all ease-in-out 0.15s;
+  cursor: pointer;
+}
+
+.goBack:hover {
+  transform: scale(1.1);
+}
