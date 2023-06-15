@@ -70,11 +70,12 @@ const Pokemon = ({id,name,image,type1,type2,color}) => {
 	  } : null
 
 
+	  const pokemonLink = `/Focus/${id}`;
 
 	return (
 		<div className='card'>
 			<div style={styles} className='pokemon'>
-		<Link to={"/Focus"}>
+		<Link to={pokemonLink}>
 				<img alt='pokemon' src={image} width = '200px' height = '200px' />
 				</Link>
 			</div>

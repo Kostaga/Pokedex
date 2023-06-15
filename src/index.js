@@ -22,8 +22,8 @@ root.render(
 
     <Routes> 
     
-      <Route exact path={'/'} Component={App} />
-      <Route exact path={'/Focus'} Component={Focus} />
+      <Route exact path="/" element={<App />} />
+      <Route exact path="/Focus/:id" element={<Focus />} />
 
     </Routes>
 

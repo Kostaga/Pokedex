@@ -11,6 +11,8 @@ function App() {
 
   const [filteredList, setFilteredList] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(true);
+
 
   const filterResults = (query) => {
     const filtered = all_pokemon.filter(pokemon => {
@@ -48,6 +50,7 @@ function App() {
       .then((data) =>{
         setAllPokemon(data) 
         setFilteredList(data)
+        setIsLoading(false);
       });
   }, []);
 
@@ -55,7 +58,6 @@ function App() {
 
 const pokedex = filteredList.map((pokemon,index) => {
 
-  
   return (
     <Pokemon 
     key={index} 
@@ -69,6 +71,10 @@ const pokedex = filteredList.map((pokemon,index) => {
   );
 })
 
+
+  if (isLoading) {
+    return <h1>Loading...</h1>
+  }
 
   return (
     <div className="App">
