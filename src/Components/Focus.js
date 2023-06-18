@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Menu from './Menu';
 import '../App.css';
 import '../Focus.css';
+import Forms from './Forms';
 import { Link, useParams } from 'react-router-dom';
 
 
@@ -9,7 +10,7 @@ import { Link, useParams } from 'react-router-dom';
 
 const Focus = () => {
 
-	const {id} = useParams();
+	let {id} = useParams();
 
 	const [currentPokemon, setCurrentPokemon] = React.useState(null);
 	const [selected, setSelected] = React.useState('Forms');
@@ -123,6 +124,35 @@ const Focus = () => {
 
 
 
+	  const previous = (id) => {
+
+		if (parseInt(id)-1 > 0) {
+			return `/Focus/${parseInt(id) - 1}`;
+		  } 
+
+
+		else if (parseInt(id)-1 === 0) {
+			id = 493;
+			return `/Focus/${id}`;
+		  }
+
+	  }
+
+
+	  const next = (id) => {
+
+
+		if (parseInt(id) + 1 <= 493) {
+			return `/Focus/${parseInt(id) + 1}`
+		}
+
+		else if (parseInt(id) + 1 === 494) {
+			id = 1;
+			return `/Focus/${id}`
+		}
+
+	  }
+
 
 
 	return (
@@ -137,7 +167,7 @@ const Focus = () => {
 
 			<div className='main-container'>
 
-				<div className='warper'>
+			<div className='warper'>
 				
 					<div className='info_focus'>
 							<div className='name'>
@@ -155,45 +185,46 @@ const Focus = () => {
 								</div>
 							</div>
 					</div>
-						
-					<div style={styles}  className='pokemon_focus'>
-						<img alt='pokemon' src={currentPokemon.sprites.other['official-artwork'].front_default ? currentPokemon.sprites.other['official-artwork'].front_default : currentPokemon.sprites.other.home_front_default} width={'500px'} height={'500px'}/>
+					
+				<div style={styles}  className='pokemon_focus'>
+					<img alt='pokemon' src={currentPokemon.sprites.other['official-artwork'].front_default ? currentPokemon.sprites.other['official-artwork'].front_default : currentPokemon.sprites.other.home_front_default} width={'500px'} height={'500px'}/>
+				</div>
+
+				</div>
+
+				
+
+
+
+				<Forms 
+				currentPokemon = {currentPokemon}
+				typeStyles = {typeStyles}
+				type2Styles = {type2Styles}
+				styles = {styles}
+				pad = {pad}
+				li_styles = {li_styles}
+				handleClick = {handleClick}
+				selected = {selected}
+				/>
+
+					{/* Buttons to go navigate to main page, next pokemon and previous pokemon */}
+
+					<div className='nav-btns'>
+						<Link to={'/'}>
+						<button className='nav-btn goBack' type='text'>Go back</button>
+						</Link> 
+
+						<Link to={previous(id)}>
+							<button className='nav-btn'>{`<`} Previous</button>
+						</Link>
+
+						<Link to={next(id)}>
+							<button className='nav-btn'>Next {`>`}</button>
+						</Link>
 					</div>
-	
-					</div>
-
-					<div className='warper'>
-
-					<ul className='details'>
-						<li className='li_item' style={selected !== 'Forms' ? li_styles : null} onClick={handleClick}>Forms</li>
-						<li className='li_item' style={selected !== 'Detail' ? li_styles : null} onClick={handleClick}>Detail</li>
-						<li className='li_item' style={selected !== 'Stats' ? li_styles : null} onClick={handleClick}>Stats</li>
-					</ul>
-
-					<div className='forms'>
-
-						<img style={styles} alt='pokemon' src={currentPokemon.sprites.other['official-artwork'].front_shiny ? currentPokemon.sprites.other['official-artwork'].front_shiny : currentPokemon.sprites.other.home_front_default} width={'100px'} height={'100px'}/>
-						
-						<img style={styles} alt='pokemon' src={currentPokemon.sprites.other.dream_world.front_default ? currentPokemon.sprites.other.dream_world.front_default : currentPokemon.sprites.other.home_front_default} width={'100px'} height={'100px'}/>
-
-						<img style={styles} alt='pokemon' src={currentPokemon.sprites.front_default ? currentPokemon.sprites.front_default  : currentPokemon.sprites.other.home_front_default} width={'100px'} height={'100px'}/>
-
-						<img style={styles} alt='pokemon' src={currentPokemon.sprites.front_shiny ? currentPokemon.sprites.front_shiny : currentPokemon.sprites.other.home_front_default} width={'100px'} height={'100px'}/>
-
-					</div>
-
-					<h2 className='form_name'>{currentPokemon.name.charAt(0).toUpperCase()+currentPokemon.name.slice(1)}</h2>
-
-					<h3 className='form_description'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h3>
-
-					</div>
-
-					<Link to={'/'}>
-					<button className='goBack' type='text'>Go back</button>
-					</Link>
+					
 				
 			</div>
-
 
 
 			</div>
