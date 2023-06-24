@@ -29,7 +29,7 @@ const Forms = ({currentPokemon,styles,typeStyles,type2Styles,pad,li_styles,handl
 
 					<h2 className='form_name'>{currentPokemon.name.charAt(0).toUpperCase()+currentPokemon.name.slice(1)}</h2>
 
-					<h3 className='form_description'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h3>
+					<h3 className='form_description'>{currentPokemon.flavorText.flavor_text}</h3>
 
 					</div>
 				</>

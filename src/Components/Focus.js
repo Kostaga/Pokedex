@@ -3,6 +3,8 @@ import Menu from './Menu';
 import '../App.css';
 import '../Focus.css';
 import Forms from './Forms';
+import Detail from './Detail';
+import Stats from './Stats';
 import { Link, useParams } from 'react-router-dom';
 
 
@@ -15,25 +17,34 @@ const Focus = () => {
 	const [currentPokemon, setCurrentPokemon] = React.useState(null);
 	const [selected, setSelected] = React.useState('Forms');
 	const [isLoading, setIsLoading] = React.useState(true);
+
+ 
+
 	
 	useEffect(() => {
 		fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
 		  .then((response) => response.json())
 		  .then((pokemonData) => {
 			return fetch(pokemonData.species.url).then((response) => response.json())
+
 			  .then((speciesData) => {
 				return fetch(speciesData.color.url).then((response) => response.json())
+
 				  .then((colorData) => {
-					return { ...pokemonData, color: colorData.name };
+					
+					return { ...pokemonData, flavorText: speciesData.flavor_text_entries[1] , color: colorData.name };
 				  });
 			  });
 		  })
 		  .then((data) => {
 			setCurrentPokemon(data);
 			setIsLoading(false);
+
 		  });
 	  }, [id]);
-	
+
+
+
 	
 	  if (isLoading) {
 		return <h1>Loading...</h1>;
@@ -42,6 +53,8 @@ const Focus = () => {
 	  if (!currentPokemon) {
 		return <h1>No data available.</h1>;
 	  }
+
+	  
 
 	const handleClick = (event) => {
 		const value = event.target.innerText;
@@ -196,7 +209,7 @@ const Focus = () => {
 
 
 
-				<Forms 
+				{selected === 'Forms' &&<Forms 
 				currentPokemon = {currentPokemon}
 				typeStyles = {typeStyles}
 				type2Styles = {type2Styles}
@@ -205,9 +218,24 @@ const Focus = () => {
 				li_styles = {li_styles}
 				handleClick = {handleClick}
 				selected = {selected}
-				/>
+				/>}
 
-					{/* Buttons to go navigate to main page, next pokemon and previous pokemon */}
+			{selected ==='Detail' && <Detail 
+			selected = {selected} 
+			handleClick = {handleClick}
+			id = {id}
+			/>}
+
+
+			{selected === 'Stats' && 
+			<Stats
+			currentPokemon = {currentPokemon}
+			
+			selected = {selected}
+			handleClick = {handleClick}/>
+			 }
+
+					{/* Buttons to navigate to main page, next pokemon and previous pokemon */}
 
 					<div className='nav-btns'>
 						<Link to={'/'}>
