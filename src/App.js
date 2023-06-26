@@ -3,7 +3,7 @@ import Menu from './Components/Menu';
 import Search from './Components/Search';
 import Pokemon from './Components/Pokemon';
 import Container from './Components/Container';
-import {React,useEffect,useState} from 'react';
+import {React,useEffect,useState,useCallback} from 'react';
 
 function App() {
 
@@ -12,6 +12,14 @@ function App() {
   const [filteredList, setFilteredList] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
+
+  const [favoritePokemon, setFavoritePokemon] = useState(() => {
+    const favorites = localStorage.getItem('Favorite');
+    const getFavorites = JSON.parse(favorites);
+    return getFavorites ? getFavorites : [];
+  });
+
+
 
 
   const filterResults = (query) => {
@@ -25,10 +33,11 @@ function App() {
     setFilteredList(filtered);
   };
 
+ 
 
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=493&offset=0")
+    fetch('https://pokeapi.co/api/v2/pokemon?limit=493&offset=0')
       .then((response) => response.json())
       .then((data) => {
         let results = data.results;
@@ -43,16 +52,45 @@ function App() {
         });
         return Promise.all(colorPromisesArray).then((colorData) => {
           return pokemonData.map((pokemon, index) => {
-            return { ...pokemon, color: colorData[index].color.name };
+            const isFavorite = favoritePokemon.includes(pokemon.id);
+            return { ...pokemon, color: colorData[index].color.name, favorite: isFavorite };
           });
         });
       })
-      .then((data) =>{
-        setAllPokemon(data) 
-        setFilteredList(data)
+      .then((data) => {
+        setAllPokemon(data);
+        setFilteredList(data);
         setIsLoading(false);
       });
-  }, []);
+
+  }, [favoritePokemon]);
+
+
+
+  useEffect(() => {
+    localStorage.setItem("Favorite", JSON.stringify(favoritePokemon));
+  }, [favoritePokemon]);
+
+
+  const isFavorite = useCallback(
+    (id) => {
+      const updatedFilteredList = filteredList.map((pokemon) =>
+        pokemon.id === id ? { ...pokemon, favorite: !pokemon.favorite } : pokemon
+      );
+
+      const updatedAllPokemon = all_pokemon.map((pokemon) =>
+        pokemon.id === id ? { ...pokemon, favorite: !pokemon.favorite } : pokemon
+      );
+
+      setFilteredList(updatedFilteredList);
+      setAllPokemon(updatedAllPokemon);
+
+      const favoritePokemons = updatedFilteredList.filter((pokemon) => pokemon.favorite);
+      setFavoritePokemon(favoritePokemons.map((pokemon) => pokemon.id));
+    },
+    [all_pokemon, filteredList]
+  );
+
 
 
 
@@ -66,7 +104,10 @@ const pokedex = filteredList.map((pokemon,index) => {
     color = {pokemon.color}
     image = {pokemon.sprites.other['official-artwork'].front_default ? pokemon.sprites.other['official-artwork'].front_default : pokemon.sprites.other.home.front_default } 
     type1={pokemon.types[0].type.name} 
-    type2={pokemon.types[1] ? pokemon.types[1].type.name : null}/>
+    type2={pokemon.types[1] ? pokemon.types[1].type.name : null}
+    favoritePokemon = {pokemon.favorite}
+    isFavorite = {isFavorite}
+    />
 
   );
 })
