@@ -27,7 +27,7 @@ const Detail = ({ selected, handleClick, id }) => {
 		const evolutionChainResponse = await fetch(evolutionChainUrl);
 		const evolutionChainData = await evolutionChainResponse.json();
   
-		console.log('evolutionChainData:', evolutionChainData);
+
   
 		const current = evolutionChainData.chain.species.name;
 		setCurrentPokemon({
@@ -35,11 +35,11 @@ const Detail = ({ selected, handleClick, id }) => {
 		  sprite: null,
 		});
   
-		console.log('current:', current);
+
   
 		const evolvesTo = evolutionChainData.chain.evolves_to;
   
-		console.log('evolvesTo:', evolvesTo);
+
   
 		if (evolvesTo.length > 0) {
 		  const previous = evolvesTo[0].species.name;
@@ -56,7 +56,7 @@ const Detail = ({ selected, handleClick, id }) => {
 		  };
   
 		  const currentSprite = await fetchSprite(current);
-		  console.log('currentSprite:', currentSprite);
+
 		  if (isMounted) {
 			setCurrentPokemon((prevState) => ({
 			  ...prevState,
@@ -65,7 +65,7 @@ const Detail = ({ selected, handleClick, id }) => {
 		  }
   
 		  const previousSprite = await fetchSprite(previous);
-		  console.log('previousSprite:', previousSprite);
+
 		  if (isMounted) {
 			setPreviousPokemon((prevState) => ({
 			  ...prevState,
