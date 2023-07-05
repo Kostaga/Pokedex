@@ -22,7 +22,6 @@ const Detail = ({ selected, handleClick, id }) => {
 		const speciesResponse = await fetch(speciesUrl);
 		const speciesData = await speciesResponse.json();
   
-		console.log('speciesData:', speciesData);
   
 		const evolutionChainUrl = speciesData.evolution_chain.url;
 		const evolutionChainResponse = await fetch(evolutionChainUrl);
