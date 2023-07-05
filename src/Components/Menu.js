@@ -1,7 +1,7 @@
 import React from 'react';
 import Pokemon_Icon from '../imgs/podekex 1.png';
 import Pokemon_Profile from '../imgs/profile 1.png';
-// import {Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 // <Link to="/Dashboard"> Dashboard </Link>
 
 const Menu = () => {
@@ -16,10 +16,14 @@ const Menu = () => {
 	return (
 		<nav className='navbar'>
 			<div style={{cursor: 'pointer'}} onClick={handleScroll}>
-				<img alt='pokemon_icon' src={Pokemon_Icon}/>
+				<Link to='/'>
+					<img alt='pokemon_icon' src={Pokemon_Icon}/>
+				</Link>
 			</div>
 			
-			<img alt='pokemon_profile' src={Pokemon_Profile}/>
+			<Link to ='/User'>
+				<img alt='pokemon_profile' src={Pokemon_Profile}/>
+			</Link>
 
 		</nav>
 	);

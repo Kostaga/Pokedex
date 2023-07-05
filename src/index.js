@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import Focus from "./Components/Focus";
+import User from './Components/User';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter,Routes, 
   Route} from "react-router-dom";
@@ -24,6 +25,7 @@ root.render(
     
       <Route exact path="/" element={<App />} />
       <Route exact path="/Focus/:id" element={<Focus />} />
+      <Route exact path="/User" element={ <User /> } />
 
     </Routes>
 
