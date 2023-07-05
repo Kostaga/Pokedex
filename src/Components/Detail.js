@@ -16,7 +16,7 @@ const Detail = ({ selected, handleClick, id }) => {
 		const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
 		const pokemonData = await response.json();
   
-		console.log('pokemonData:', pokemonData);
+
   
 		const speciesUrl = pokemonData.species.url;
 		const speciesResponse = await fetch(speciesUrl);
