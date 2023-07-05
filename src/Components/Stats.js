@@ -5,8 +5,6 @@ import '../Focus.css'
 const Stats = ({selected,handleClick, currentPokemon}) => {
 
 
-	console.log(currentPokemon);
-
 	const li_styles = {
 		color: '#605A7666',
 	  };
